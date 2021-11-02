@@ -13,10 +13,30 @@ begin
     print(npts)
 end
 
+procedure test_stat4()
+begin
+    x = (/1.,2.,3.,4.,5.,6.,-999,8.,9.,10.,11.,-999/)
+    x@_FillValue = -999
+    xmean   = new(1,float)
+    xvar    = new(1,float)
+    xskew   = new(1,float)
+    xkurt   = new(1,float)
+    npts    = new(1,integer)
+
+    stat4(x,xmean,xvar,xskew,xkurt,npts)
+    print(xmean)
+    print(xvar)
+    print(xskew)
+    print(xkurt)
+    print(npts)
+end
+
+
 
 begin
 
-    test_stat2()
+    ; test_stat2()
+    test_stat4()
 
 end
 

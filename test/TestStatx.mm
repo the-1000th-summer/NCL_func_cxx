@@ -28,7 +28,21 @@
     auto [xMean, xVar, xStd, nPtUsed, ier] = NCL_cxx::stat2(x, 12, -999);
     XCTAssertEqualWithAccuracy(xMean, 5.9, 1e-6);
     XCTAssertEqualWithAccuracy(xVar, 12.1, 1e-6);
+    XCTAssertEqualWithAccuracy(xStd, 3.478505, 1e-6);
     XCTAssertEqual(nPtUsed, 10);
+    XCTAssertEqual(ier, 0);
+}
+
+- (void)test_stat4 {
+    float x[] = {1.,2.,3.,4.,5.,6.,-999,8.,9.,10.,11.,-999};
+    auto [xMean, xVar, xStd, xSkew, xKurt, nPtUsed, ier] = NCL_cxx::stat4(x, 12, -999);
+    XCTAssertEqualWithAccuracy(xMean, 5.9, 1e-6);
+    XCTAssertEqualWithAccuracy(xVar, 12.1, 1e-6);
+    XCTAssertEqualWithAccuracy(xStd, 3.478505, 1e-6);
+    XCTAssertEqualWithAccuracy(xSkew, 0.075267, 1e-6);
+    XCTAssertEqualWithAccuracy(xKurt, -1.659151, 1e-6);
+    XCTAssertEqual(nPtUsed, 10);
+    XCTAssertEqual(ier, 0);
 }
 
 - (void)testPerformanceExample {

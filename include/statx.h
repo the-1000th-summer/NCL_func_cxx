@@ -15,6 +15,8 @@ namespace NCL_cxx {
 
 std::tuple<float, float, float, int, int> stat2(const float* const x, int xSize, float msgValue);
 void stat2(const float* const x, int xSize, float msgValue, float &xMean, float &xVar, float &xStd, int &nPtUsed, int &ier);
+std::tuple<float, float, float, float, float, int, int> stat4(const float* const x, int xSize, float msgValue);
+void stat4(const float* const x, int xSize, float msgValue, float &xMean, float &xVar, float &xStd, float &xSkew, float &xKurt, int &nPtUsed, int &ier);
 
 }
 
