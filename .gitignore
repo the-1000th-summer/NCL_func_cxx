@@ -1,0 +1,14 @@
+# mac file
+.DS_Store
+# Xcode user data
+xcuserdata/
+
+# vscode
+.vscode
+# python temp file and folder
+__pycache__/
+
+# cmake build and cache
+build/
+.cache/
+
