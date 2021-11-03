@@ -61,6 +61,24 @@
     XCTAssertEqual(ier, 0);
 }
 
+- (void)test_medmrng {
+    float x[] = {1.,2.,3.,4.,5.,6.,-999,8.,9.,10.,11.,-999};
+    auto [xMedian, xMidRange, xRange, nPtUsed, ier] = NCL_cxx::medmrng<float>(x, 12, -999);
+    XCTAssertEqualWithAccuracy(xMedian, 5.5, 1e-6);
+    XCTAssertEqualWithAccuracy(xMidRange, 6, 1e-6);
+    XCTAssertEqualWithAccuracy(xRange, 10, 1e-6);
+    XCTAssertEqual(nPtUsed, 10);
+    XCTAssertEqual(ier, 0);
+    
+    x[0] = -999;
+    NCL_cxx::medmrng<float>(x, 12, -999, xMedian, xMidRange, xRange, nPtUsed, ier);
+    XCTAssertEqualWithAccuracy(xMedian, 6, 1e-6);
+    XCTAssertEqualWithAccuracy(xMidRange, 6.5, 1e-6);
+    XCTAssertEqualWithAccuracy(xRange, 9, 1e-6);
+    XCTAssertEqual(nPtUsed, 9);
+    XCTAssertEqual(ier, 0);
+}
+
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{

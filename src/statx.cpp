@@ -6,6 +6,7 @@
 //
 
 #include <iostream>
+#include <vector>
 #include <cmath>
 #include <numeric>
 #include "statx.h"
@@ -99,6 +100,44 @@ void stat4(const T* const x, int xSize, T msgValue, T &xMean, T &xVar, T &xStd, 
         xVar = 0; xStd = 0;
     } else {
         ier = 2;
+    }
+}
+
+template <typename T>
+std::tuple<T, T, T, int, int> medmrng(const T* const x, int xSize, T msgValue) {
+    T xMedian, xMidRange, xRange;
+    int nPtUsed, ier;
+    medmrng(x, xSize, msgValue, xMedian, xMidRange, xRange, nPtUsed, ier);
+    return {xMedian, xMidRange, xRange, nPtUsed, ier};
+}
+template std::tuple<float, float, float, int, int> medmrng<float>(const float* const x, int xSize, float msgValue);
+template std::tuple<double, double, double, int, int> medmrng<double>(const double* const x, int xSize, double msgValue);
+
+template <typename T>
+void medmrng(const T* const x, int xSize, T msgValue, T &xMedian, T &xMidRange, T &xRange, int &nPtUsed, int &ier) {
+    xMedian = msgValue; xMidRange = msgValue; xRange = msgValue;
+    nPtUsed = 0;
+
+    if (xSize < 1) {
+        ier = 1; return;
+    }
+    ier = 0;
+
+    std::vector<T> xWithNoMsg{};
+    std::copy_if(x, x+xSize, std::back_inserter(xWithNoMsg), [msgValue](const T i){ return i != msgValue; });
+    nPtUsed = xWithNoMsg.size();
+    if (nPtUsed < 1) {
+        ier = 2; return;
+    }
+    std::sort(xWithNoMsg.begin(), xWithNoMsg.end());
+
+    xMidRange = 0.5 * (xWithNoMsg.back() + xWithNoMsg.front());
+    xRange = xWithNoMsg.back() - xWithNoMsg.front();
+
+    if (nPtUsed % 2 == 0) {
+        xMedian = 0.5 * (xWithNoMsg[nPtUsed/2-1] + xWithNoMsg[nPtUsed/2]);
+    } else {
+        xMedian = xWithNoMsg[(nPtUsed+1)/2-1];
     }
 }
 

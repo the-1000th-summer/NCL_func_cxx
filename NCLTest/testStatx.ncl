@@ -31,12 +31,28 @@ begin
     print(npts)
 end
 
+procedure test_stat_medrng()
+begin
+    x = (/-999.,2.,3.,4.,5.,6.,-999,8.,9.,10.,11.,-999/)
+    x@_FillValue = -999
+    xmed    = new(1,float)
+    xmrng   = new(1,float)
+    xrng    = new(1,float)
+    npts    = new(1,integer)
+
+    stat_medrng(x,xmed,xmrng,xrng,npts)
+    print(xmed)
+    print(xmrng)
+    print(xrng)
+    print(npts)
+end
 
 
 begin
 
     ; test_stat2()
-    test_stat4()
+    ; test_stat4()
+    test_stat_medrng()
 
 end
 

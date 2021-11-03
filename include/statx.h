@@ -22,6 +22,10 @@ std::tuple<T, T, T, T, T, int, int> stat4(const T* const x, int xSize, T msgValu
 template <typename T>
 void stat4(const T* const x, int xSize, T msgValue, T &xMean, T &xVar, T &xStd, T &xSkew, T &xKurt, int &nPtUsed, int &ier);
 
+template <typename T>
+std::tuple<T, T, T, int, int> medmrng(const T* const x, int xSize, T msgValue);
+template <typename T>
+void medmrng(const T* const x, int xSize, T msgValue, T &xMedian, T &xMidRange, T &xRange, int &nPtUsed, int &ier);
 }
 
 #endif /* statx_h */
