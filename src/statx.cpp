@@ -12,13 +12,18 @@
 
 namespace NCL_cxx {
 
-std::tuple<float, float, float, int, int> stat2(const float* const x, int xSize, float msgValue) {
-    float xMean, xVar, xStd;
+template <typename T>
+std::tuple<T, T, T, int, int> stat2(const T* const x, int xSize, T msgValue) {
+    T xMean, xVar, xStd;
     int nPtUsed, ier;
     stat2(x, xSize, msgValue, xMean, xVar, xStd, nPtUsed, ier);
     return {xMean, xVar, xStd, nPtUsed, ier};
 }
-void stat2(const float* const x, int xSize, float msgValue, float &xMean, float &xVar, float &xStd, int &nPtUsed, int &ier) {
+template std::tuple<float, float, float, int, int> stat2(const float* const x, int xSize, float msgValue);
+template std::tuple<double, double, double, int, int> stat2(const double* const x, int xSize, double msgValue);
+
+template <typename T>
+void stat2(const T* const x, int xSize, T msgValue, T &xMean, T &xVar, T &xStd, int &nPtUsed, int &ier) {
     xMean = msgValue; xVar = msgValue; xStd = msgValue;
     nPtUsed = 0;
     if (xSize < 1) {
@@ -44,14 +49,20 @@ void stat2(const float* const x, int xSize, float msgValue, float &xMean, float 
         ier = 2;
     }
 }
+//template void stat2<float>(const float* const x, int xSize, float msgValue, float &xMean, float &xVar, float &xStd, int &nPtUsed, int &ier);
 
-std::tuple<float, float, float, float, float, int, int> stat4(const float* const x, int xSize, float msgValue) {
-    float xMean, xVar, xStd, xSkew, xKurt;
+template <typename T>
+std::tuple<T, T, T, T, T, int, int> stat4(const T* const x, int xSize, T msgValue) {
+    T xMean, xVar, xStd, xSkew, xKurt;
     int nPtUsed, ier;
     stat4(x, xSize, msgValue, xMean, xVar, xStd, xSkew, xKurt, nPtUsed, ier);
     return {xMean, xVar, xStd, xSkew, xKurt, nPtUsed, ier};;
 }
-void stat4(const float* const x, int xSize, float msgValue, float &xMean, float &xVar, float &xStd, float &xSkew, float &xKurt, int &nPtUsed, int &ier) {
+template std::tuple<float, float, float, float, float, int, int> stat4<float>(const float* const x, int xSize, float msgValue);
+template std::tuple<double, double, double, double, double, int, int> stat4<double>(const double* const x, int xSize, double msgValue);
+
+template <typename T>
+void stat4(const T* const x, int xSize, T msgValue, T &xMean, T &xVar, T &xStd, T &xSkew, T &xKurt, int &nPtUsed, int &ier) {
     xMean = msgValue; xVar = msgValue; xStd = msgValue;
     xSkew = msgValue; xKurt = msgValue; nPtUsed = 0;
     

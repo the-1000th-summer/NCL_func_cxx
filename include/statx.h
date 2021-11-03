@@ -12,11 +12,15 @@
 
 namespace NCL_cxx {
 
+template <typename T>
+std::tuple<T, T, T, int, int> stat2(const T* const x, int xSize, T msgValue);
+template <typename T>
+void stat2(const T* const x, int xSize, T msgValue, T &xMean, T &xVar, T &xStd, int &nPtUsed, int &ier);
 
-std::tuple<float, float, float, int, int> stat2(const float* const x, int xSize, float msgValue);
-void stat2(const float* const x, int xSize, float msgValue, float &xMean, float &xVar, float &xStd, int &nPtUsed, int &ier);
-std::tuple<float, float, float, float, float, int, int> stat4(const float* const x, int xSize, float msgValue);
-void stat4(const float* const x, int xSize, float msgValue, float &xMean, float &xVar, float &xStd, float &xSkew, float &xKurt, int &nPtUsed, int &ier);
+template <typename T>
+std::tuple<T, T, T, T, T, int, int> stat4(const T* const x, int xSize, T msgValue);
+template <typename T>
+void stat4(const T* const x, int xSize, T msgValue, T &xMean, T &xVar, T &xStd, T &xSkew, T &xKurt, int &nPtUsed, int &ier);
 
 }
 
