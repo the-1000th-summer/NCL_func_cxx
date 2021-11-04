@@ -26,6 +26,15 @@ template <typename T>
 std::tuple<T, T, T, int, int> medmrng(const T* const x, int xSize, T msgValue);
 template <typename T>
 void medmrng(const T* const x, int xSize, T msgValue, T &xMedian, T &xMidRange, T &xRange, int &nPtUsed, int &ier);
+
+template <typename T>
+std::tuple<T, T, T, int, int> stat2t(const T* const x, int xSize, T msgValue, T pTrim);
+template <typename T>
+void stat2t(const T* const x, int xSize, T msgValue, T pTrim, T &xMeanT, T &xVarT, T &xStdT, int &nPtUsed, int &ier);
+
+
 }
+
+
 
 #endif /* statx_h */

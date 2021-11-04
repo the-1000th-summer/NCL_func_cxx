@@ -79,6 +79,23 @@
     XCTAssertEqual(ier, 0);
 }
 
+- (void)test_stat2t {
+    float x[] = {1.,2.,3.,4.,5.,6.,-999,8.,9.,10.,11.,-999};
+    auto [xMeanT, xVarT, xStdT, nPtUsed, ier] = NCL_cxx::stat2t<float>(x, 12, -999, 0.0);
+    XCTAssertEqualWithAccuracy(xMeanT, 5.9, 1e-6);
+    XCTAssertEqualWithAccuracy(xVarT, 12.1, 1e-6);
+    XCTAssertEqualWithAccuracy(xStdT, 3.478505, 1e-6);
+    XCTAssertEqual(nPtUsed, 10);
+    XCTAssertEqual(ier, 0);
+    
+    NCL_cxx::stat2t<float>(x, 12, -999, 0.5, xMeanT, xVarT, xStdT, nPtUsed, ier);
+    XCTAssertEqualWithAccuracy(xMeanT, 5.833333, 1e-6);
+    XCTAssertEqualWithAccuracy(xVarT, 5.366667, 1e-6);
+    XCTAssertEqualWithAccuracy(xStdT, 2.316607, 1e-6);
+    XCTAssertEqual(nPtUsed, 6);
+    XCTAssertEqual(ier, 0);
+}
+
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{

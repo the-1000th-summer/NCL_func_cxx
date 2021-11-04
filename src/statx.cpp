@@ -141,4 +141,50 @@ void medmrng(const T* const x, int xSize, T msgValue, T &xMedian, T &xMidRange, 
     }
 }
 
+template <typename T>
+std::tuple<T, T, T, int, int> stat2t(const T* const x, int xSize, T msgValue, T pTrim) {
+    T xMeanT, xVarT, xStdT;
+    int nPtUsed, ier;
+    stat2t(x, xSize, msgValue, pTrim, xMeanT, xVarT, xStdT, nPtUsed, ier);
+    return {xMeanT, xVarT, xStdT, nPtUsed, ier};
+}
+template std::tuple<float, float, float, int, int> stat2t<float>(const float* const x, int xSize, float msgValue, float pTrim);
+template std::tuple<double, double, double, int, int> stat2t<double>(const double* const x, int xSize, double msgValue, double pTrim);
+
+template <typename T>
+void stat2t(const T* const x, int xSize, T msgValue, T pTrim, T &xMeanT, T &xVarT, T &xStdT, int &nPtUsed, int &ier) {
+    xMeanT = msgValue; xVarT = msgValue; xStdT = msgValue;
+    ier = 0; nPtUsed = 0;
+    
+    if (xSize < 1) {
+        ier = 1; return;
+    }
+    
+    if (pTrim == 0) {
+        stat2(x, xSize, msgValue, xMeanT, xVarT, xStdT, nPtUsed, ier);
+        return;
+    } else if (pTrim == 1) {
+        ier = 2; return;
+    }
+    
+    std::vector<T> xWithNoMsg{};
+    std::copy_if(x, x+xSize, std::back_inserter(xWithNoMsg), [msgValue](const T i){ return i != msgValue; });
+    nPtUsed = xWithNoMsg.size();
+    if (nPtUsed < 1) {       // series contains all msg values
+        ier = 3; return;
+    }
+    // sort series in ascending order
+    std::sort(xWithNoMsg.begin(), xWithNoMsg.end());
+    
+    /// number of values trimmed from one side
+    int trimNum = std::max(static_cast<int>(nPtUsed*0.5*pTrim), 1);
+    
+    if (nPtUsed-2*trimNum > 0) {
+        stat2(xWithNoMsg.data()+trimNum, nPtUsed-2*trimNum, msgValue, xMeanT, xVarT, xStdT, nPtUsed, ier);
+    } else {                 // not enough trimmed values
+        ier = 4;
+    }
+    
+}
+
 }
