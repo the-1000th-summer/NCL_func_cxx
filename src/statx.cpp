@@ -184,7 +184,103 @@ void stat2t(const T* const x, int xSize, T msgValue, T pTrim, T &xMeanT, T &xVar
     } else {                 // not enough trimmed values
         ier = 4;
     }
-    
 }
+
+template <typename T>
+void esauto(const T* const x, int xSize, T msgValue, int maxLag, T* const acv, T* const acr, int &ier) {
+    ier = (xSize < 2) ? 1 : 0;
+    if (maxLag < 0 || maxLag > xSize) { ier = 2; }
+    
+    auto [xMean, xVar, xStd, nPtUsed, jer] = stat2(x, xSize, msgValue);
+    if (xVar <= 0 && xVar != msgValue) { ier = 3; }
+    if (ier != 0) {
+        int fillSize = std::max(0, std::min(maxLag, xSize));
+        std::fill_n(acv, fillSize, msgValue);
+        std::fill_n(acr, fillSize, msgValue);
+        return;
+    }
+
+    if (jer != 0) {
+        ier = -jer; return;
+    } else if (xVar == 0) {
+        ier = -5; return;
+    }
+    
+    acv[0] = xVar;
+    acr[0] = 1.0;
+    
+    if (maxLag == 0) { return; }
+    
+    for (int lagIndex = 1; lagIndex < maxLag+1; ++lagIndex) {
+        double x1 = 0.0, xn = 0.0;
+        for (int i = 0; i < xSize-lagIndex; ++i) {
+            if (x[i] != msgValue && x[i+lagIndex] != msgValue) {
+                x1 += (x[i+lagIndex] - xMean) * (x[i] - xMean);
+                xn += 1;
+            }
+        }
+        if (xn >= 2) {
+            acv[lagIndex] = x1 / (xn-1);
+            acr[lagIndex] = acv[lagIndex] / xVar;
+        } else {
+            acv[lagIndex] = msgValue;
+            acr[lagIndex] = msgValue;
+        }
+    }
+}
+template void esauto<float>(const float* const x, int xSize, float msgValue, int maxLag, float* const acv, float* const acr, int &ier);
+template void esauto<double>(const double* const x, int xSize, double msgValue, int maxLag, double* const acv, double* const acr, int &ier);
+
+template <typename T>
+void escros(const T* const x, const T* const y, int arrSize, T xMsgValue, T yMsgValue, int maxLag, T* const ccv, T* const ccr, int &ier) {
+    ier = (arrSize < 2) ? 1 : 0;
+    if (maxLag < 0 || maxLag > arrSize) { ier = 2; }
+    if (ier != 0) { return; }
+    
+    int fillSize = std::max(0, std::min(maxLag, arrSize));
+    std::fill_n(ccv, fillSize, xMsgValue);
+    std::fill_n(ccr, fillSize, xMsgValue);
+    
+    auto [xMean, xVar, xStd, nPtUsed, jer] = stat2(x, arrSize, xMsgValue);
+    if (jer != 0) {
+        ier = -jer;
+    } else if (xStd == 0) {       // x must be a series of constant values
+        ier = -5;
+    } else if (nPtUsed == 0) {    // x must be a series of missing values
+        ier = -6;
+    }
+    if (ier != 0) { return; }
+    
+    auto [yMean, yVar, yStd, y_nPtUsed, y_jer] = stat2(y, arrSize, yMsgValue);
+    if (y_jer != 0) {
+        ier = -(y_jer + 100);
+    } else if (yStd == 0) {     // y must be a series of constant values
+        ier = -105;
+    } else if (y_nPtUsed == 0) {   // y must be a series of missing values
+        ier = -106;
+    }
+    if (ier != 0) { return; }
+    
+    double xStdyStd = 1.0 / (xStd * yStd);
+    
+    for (int lagIndex = 0; lagIndex < maxLag + 1; ++lagIndex) {
+        double xy1 = 0, xyn = 0.0;
+        for (int i = 0; i < arrSize - lagIndex; ++i) {
+            if (x[i] != xMsgValue && y[i+lagIndex] != yMsgValue) {
+                xy1 += (y[i+lagIndex] - yMean) * (x[i] - xMean);
+                xyn += 1;
+            }
+        }
+        if (xyn >= 2) {
+            ccv[lagIndex] = xy1 / (xyn - 1);
+            ccr[lagIndex] = ccv[lagIndex] * xStdyStd;
+        } else {
+            ccv[lagIndex] = xMsgValue;
+            ccr[lagIndex] = yMsgValue;
+        }
+    }
+}
+template void escros<float>(const float* const x, const float* const y, int arrSize, float xMsgValue, float yMsgValue, int maxLag, float* const ccv, float* const ccr, int &ier);
+template void escros<double>(const double* const x, const double* const y, int arrSize, double xMsgValue, double yMsgValue, int maxLag, double* const ccv, double* const ccr, int &ier);
 
 }

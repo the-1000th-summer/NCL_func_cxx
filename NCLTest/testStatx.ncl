@@ -62,13 +62,45 @@ begin
 
 end
 
+procedure test_esacr_esacv()
+begin
+    x = (/1.,2.,3.,4.,5.,6.,-999,8.,9.,10.,11.,-999/)
+    x@_FillValue = -999
+
+    acr = esacr(x,9)
+    acv = esacv(x,9)
+    print(acr)
+    print(sprintf("%.8f", acv))
+
+end
+
+procedure test_esccr()
+begin
+    x = new(12,double)
+    y = new(12,double)
+    x = (/1.,2.,3.,4.,5.,6.,-999,8.,9.,10.,11.,-999/)
+    y = (/ -999,11.,10.,9.,8.,-999,6.,5.,4.,3.,2.,1. /)
+    x@_FillValue = -999
+    y@_FillValue = -999
+    ccv = esccv(x,x,9)
+    ccr = esccr(x,x,9)
+    ccv_2 = esccv(x,y,9)
+    ccr_2 = esccr(x,y,9)
+    print(ccv)
+    print(ccr)
+    print(ccv_2)
+    print(ccr_2)
+
+end
 
 begin
 
     ; test_stat2()
     ; test_stat4()
     ; test_stat_medrng()
-    test_stat_trim()
+    ; test_stat_trim()
+    ; test_esacr_esacv()
+    test_esccr()
 
 end
 

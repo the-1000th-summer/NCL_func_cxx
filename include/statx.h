@@ -32,9 +32,13 @@ std::tuple<T, T, T, int, int> stat2t(const T* const x, int xSize, T msgValue, T 
 template <typename T>
 void stat2t(const T* const x, int xSize, T msgValue, T pTrim, T &xMeanT, T &xVarT, T &xStdT, int &nPtUsed, int &ier);
 
+template <typename T>
+void esauto(const T* const x, int xSize, T msgValue, int maxLag, T* const acv, T* const acr, int &ier);
+
+template <typename T>
+void escros(const T* const x, const T* const y, int arrSize, T xMsgValue, T yMsgValue, int maxLag, T* const ccv, T* const ccr, int &ier);
+
 
 }
-
-
 
 #endif /* statx_h */
