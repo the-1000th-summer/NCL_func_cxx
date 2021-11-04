@@ -10,11 +10,11 @@
 #include <string>
 #include "statx.h"
 
-@interface TestStatx : XCTestCase
+@interface Test_statx : XCTestCase
 
 @end
 
-@implementation TestStatx
+@implementation Test_statx
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.

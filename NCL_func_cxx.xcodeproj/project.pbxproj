@@ -7,13 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		794EB1A627341715007E112C /* accumrun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 794EB1A527341715007E112C /* accumrun.cpp */; };
+		794EB1AF27341EF8007E112C /* libNCL_func_cxx.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7973AF0B27315CFC0016CEBE /* libNCL_func_cxx.dylib */; };
+		794EB1B527341F03007E112C /* Test_accumrun.mm in Sources */ = {isa = PBXBuildFile; fileRef = 794EB1AD27341EF8007E112C /* Test_accumrun.mm */; };
 		7973AF1D27315E860016CEBE /* statx.h in Headers */ = {isa = PBXBuildFile; fileRef = 7973AF1C27315E860016CEBE /* statx.h */; };
 		7973AF1F27315E8F0016CEBE /* statx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7973AF1E27315E8F0016CEBE /* statx.cpp */; };
-		7973AF2927315F820016CEBE /* TestStatx.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7973AF2827315F820016CEBE /* TestStatx.mm */; };
+		7973AF2927315F820016CEBE /* Test_statx.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7973AF2827315F820016CEBE /* Test_statx.mm */; };
 		7973AF2A27315F820016CEBE /* libNCL_func_cxx.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7973AF0B27315CFC0016CEBE /* libNCL_func_cxx.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		794EB1B027341EF8007E112C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7973AF0327315CFC0016CEBE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7973AF0A27315CFC0016CEBE;
+			remoteInfo = NCL_func_cxx;
+		};
 		7973AF2B27315F820016CEBE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7973AF0327315CFC0016CEBE /* Project object */;
@@ -24,14 +34,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		794EB1A427341701007E112C /* accumrun.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = accumrun.h; sourceTree = "<group>"; };
+		794EB1A527341715007E112C /* accumrun.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = accumrun.cpp; sourceTree = "<group>"; };
+		794EB1AB27341EF8007E112C /* Test_accumrun.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test_accumrun.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		794EB1AD27341EF8007E112C /* Test_accumrun.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Test_accumrun.mm; sourceTree = "<group>"; };
 		7973AF0B27315CFC0016CEBE /* libNCL_func_cxx.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libNCL_func_cxx.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		7973AF1C27315E860016CEBE /* statx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = statx.h; sourceTree = "<group>"; };
 		7973AF1E27315E8F0016CEBE /* statx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statx.cpp; sourceTree = "<group>"; };
 		7973AF2627315F820016CEBE /* TestStatx.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestStatx.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7973AF2827315F820016CEBE /* TestStatx.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestStatx.mm; sourceTree = "<group>"; };
+		7973AF2827315F820016CEBE /* Test_statx.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Test_statx.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		794EB1A827341EF8007E112C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				794EB1AF27341EF8007E112C /* libNCL_func_cxx.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7973AF0927315CFC0016CEBE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -65,6 +87,7 @@
 			children = (
 				7973AF0B27315CFC0016CEBE /* libNCL_func_cxx.dylib */,
 				7973AF2627315F820016CEBE /* TestStatx.xctest */,
+				794EB1AB27341EF8007E112C /* Test_accumrun.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -72,6 +95,7 @@
 		7973AF1927315E270016CEBE /* include */ = {
 			isa = PBXGroup;
 			children = (
+				794EB1A427341701007E112C /* accumrun.h */,
 				7973AF1C27315E860016CEBE /* statx.h */,
 			);
 			path = include;
@@ -80,6 +104,7 @@
 		7973AF1A27315E3C0016CEBE /* src */ = {
 			isa = PBXGroup;
 			children = (
+				794EB1A527341715007E112C /* accumrun.cpp */,
 				7973AF1E27315E8F0016CEBE /* statx.cpp */,
 			);
 			path = src;
@@ -88,7 +113,8 @@
 		7973AF2727315F820016CEBE /* test */ = {
 			isa = PBXGroup;
 			children = (
-				7973AF2827315F820016CEBE /* TestStatx.mm */,
+				794EB1AD27341EF8007E112C /* Test_accumrun.mm */,
+				7973AF2827315F820016CEBE /* Test_statx.mm */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -107,6 +133,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		794EB1AA27341EF8007E112C /* Test_accumrun */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 794EB1B227341EF8007E112C /* Build configuration list for PBXNativeTarget "Test_accumrun" */;
+			buildPhases = (
+				794EB1A727341EF8007E112C /* Sources */,
+				794EB1A827341EF8007E112C /* Frameworks */,
+				794EB1A927341EF8007E112C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				794EB1B127341EF8007E112C /* PBXTargetDependency */,
+			);
+			name = Test_accumrun;
+			productName = Test_accumrun;
+			productReference = 794EB1AB27341EF8007E112C /* Test_accumrun.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		7973AF0A27315CFC0016CEBE /* NCL_func_cxx */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7973AF1627315CFC0016CEBE /* Build configuration list for PBXNativeTarget "NCL_func_cxx" */;
@@ -151,6 +195,9 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					794EB1AA27341EF8007E112C = {
+						CreatedOnToolsVersion = 13.1;
+					};
 					7973AF0A27315CFC0016CEBE = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -174,11 +221,19 @@
 			targets = (
 				7973AF0A27315CFC0016CEBE /* NCL_func_cxx */,
 				7973AF2527315F820016CEBE /* TestStatx */,
+				794EB1AA27341EF8007E112C /* Test_accumrun */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		794EB1A927341EF8007E112C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7973AF2427315F820016CEBE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -189,11 +244,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		794EB1A727341EF8007E112C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7973AF0827315CFC0016CEBE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7973AF1F27315E8F0016CEBE /* statx.cpp in Sources */,
+				794EB1A627341715007E112C /* accumrun.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,13 +264,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7973AF2927315F820016CEBE /* TestStatx.mm in Sources */,
+				7973AF2927315F820016CEBE /* Test_statx.mm in Sources */,
+				794EB1B527341F03007E112C /* Test_accumrun.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		794EB1B127341EF8007E112C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7973AF0A27315CFC0016CEBE /* NCL_func_cxx */;
+			targetProxy = 794EB1B027341EF8007E112C /* PBXContainerItemProxy */;
+		};
 		7973AF2C27315F820016CEBE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7973AF0A27315CFC0016CEBE /* NCL_func_cxx */;
@@ -216,6 +285,44 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		794EB1B327341EF8007E112C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.the1000thsummer.Test-accumrun";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Debug;
+		};
+		794EB1B427341EF8007E112C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.the1000thsummer.Test-accumrun";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Release;
+		};
 		7973AF1427315CFC0016CEBE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -398,6 +505,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		794EB1B227341EF8007E112C /* Build configuration list for PBXNativeTarget "Test_accumrun" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				794EB1B327341EF8007E112C /* Debug */,
+				794EB1B427341EF8007E112C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7973AF0627315CFC0016CEBE /* Build configuration list for PBXProject "NCL_func_cxx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

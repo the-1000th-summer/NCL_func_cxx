@@ -283,4 +283,5 @@ void escros(const T* const x, const T* const y, int arrSize, T xMsgValue, T yMsg
 template void escros<float>(const float* const x, const float* const y, int arrSize, float xMsgValue, float yMsgValue, int maxLag, float* const ccv, float* const ccr, int &ier);
 template void escros<double>(const double* const x, const double* const y, int arrSize, double xMsgValue, double yMsgValue, int maxLag, double* const ccv, double* const ccr, int &ier);
 
+
 }
