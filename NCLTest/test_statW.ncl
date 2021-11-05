@@ -134,7 +134,16 @@ begin
     print(r)
 end
 
+procedure test_xstnd()
+begin
+    x = (/ 1.,2.,3.,4.,5.,6.,-999,8.,9.,10.,11.,-999 /)
+    x@_FillValue = -999
 
+    s = dim_standardize(x,0)
+    print(s)
+    s = dim_standardize(x,1)
+    print(s)
+end
 
 begin
 
@@ -147,7 +156,8 @@ begin
     ; test_dacumrun()
     ; test_rmsd()
     ; test_rmvmean()
-    test_rmvmed()
+    ; test_rmvmed()
+    test_xstnd()
 
 end
 

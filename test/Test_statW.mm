@@ -146,26 +146,26 @@
 
 - (void)test_dacumrun {
     float x[] = {1,2,3,4,5,7,-23};
-    auto xAcc = NCL_cxx::dacumrun<float>(x, 7, -999, 3, 0);
+    auto xAcc = NCL_cxx::acumrun<float>(x, 7, -999, 3, 0);
     float correct_xAcc[] = {-999,-999, 6, 9, 12, 16, -11};
     for (int i = 0; i < 7; ++i) {
         XCTAssertEqual(xAcc[i], correct_xAcc[i]);
     }
     
-    NCL_cxx::dacumrun<float>(x, 7, -999, 3, 1, xAcc.data());
+    NCL_cxx::acumrun<float>(x, 7, -999, 3, 1, xAcc.data());
     for (int i = 0; i < 7; ++i) {
         XCTAssertEqual(xAcc[i], correct_xAcc[i]);
     }
     
     float x_2[] = {1,2,-999,4,5,7,-999, 2, -9, 5};
-    auto xAcc_2 = NCL_cxx::dacumrun<float>(x_2, 10, -999, 3, 0);
+    auto xAcc_2 = NCL_cxx::acumrun<float>(x_2, 10, -999, 3, 0);
     float correct_xAcc_2_1[] = {-999,-999,-999,-999,-999, 16,-999,-999,-999,-2};
     for (int i = 0; i < 7; ++i) {
         XCTAssertEqual(xAcc_2[i], correct_xAcc_2_1[i]);
     }
     
     float correct_xAcc_2_2[] = {-999,-999, 3, 6, 9, 16, 12, 9, -7, -2};
-    NCL_cxx::dacumrun<float>(x_2, 10, -999, 3, 1, xAcc_2.data());
+    NCL_cxx::acumrun<float>(x_2, 10, -999, 3, 1, xAcc_2.data());
     for (int i = 0; i < 7; ++i) {
         XCTAssertEqual(xAcc_2[i], correct_xAcc_2_2[i]);
     }
@@ -208,14 +208,35 @@
     int ier = NCL_cxx::rmvmed<float>(x, 12, -999);
     
     float correct_x[] = {-4.5, -3.5, -2.5, -1.5, -0.5, 0.5, -999, 2.5, 3.5, 4.5, 5.5, -999};
+    XCTAssertEqual(ier, 0);
     for (int i = 0; i < 12; ++i) {
         XCTAssertEqualWithAccuracy(x[i], correct_x[i], 1e-6);
     }
     
     float x_2[] = {1.,2.,3.,4.,5.,6.,-999,8.,9.,10.,11.,-999};
     NCL_cxx::rmvmed<float>(x_2, 12, -999, ier);
+    XCTAssertEqual(ier, 0);
     for (int i = 0; i < 12; ++i) {
         XCTAssertEqualWithAccuracy(x_2[i], correct_x[i], 1e-6);
+    }
+}
+
+- (void)test_xstnd {
+    float x[] = {1.,2.,3.,4.,5.,6.,-999,8.,9.,10.,11.,-999};
+    int ier = NCL_cxx::xstnd<float>(x, 12, -999, 0);
+    
+    float correct_x_1[] = {-1.408651, -1.121171, -0.8336914, -0.5462116, -0.2587318, 0.02874798, -999, 0.6037076, 0.8911874, 1.178667, 1.466147, -999};
+    XCTAssertEqual(ier, 0);
+    for (int i = 0; i < 12; ++i) {
+        XCTAssertEqualWithAccuracy(x[i], correct_x_1[i], 1e-6);
+    }
+    
+    float x_2[] = {1.,2.,3.,4.,5.,6.,-999,8.,9.,10.,11.,-999};
+    NCL_cxx::xstnd<float>(x_2, 12, -999, 1, ier);
+    float correct_x_2[] = {-1.484848, -1.181818, -0.8787879, -0.5757576, -0.2727273, 0.03030303, -999, 0.6363636, 0.9393939, 1.242424, 1.545455, -999};
+    XCTAssertEqual(ier, 0);
+    for (int i = 0; i < 12; ++i) {
+        XCTAssertEqualWithAccuracy(x_2[i], correct_x_2[i], 1e-6);
     }
 }
 

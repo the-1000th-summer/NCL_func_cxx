@@ -13,10 +13,10 @@
 namespace NCL_cxx {
 
 template <typename T>
-std::vector<T> dacumrun(const T* const x, int xSize, T msgValue, int nRun, int iopt);
+std::vector<T> acumrun(const T* const x, int xSize, T msgValue, int nRun, int iopt);
 
 template <typename T>
-void dacumrun(const T* const x, int xSize, T msgValue, int nRun, int iopt, T* const xAcc);
+void acumrun(const T* const x, int xSize, T msgValue, int nRun, int iopt, T* const xAcc);
 
 }
 

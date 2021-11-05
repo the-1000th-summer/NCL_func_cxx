@@ -21,6 +21,11 @@ int rmvmed(T* const x, int xSize, T msgValue);
 template <typename T>
 void rmvmed(T* const x, int xSize, T msgValue, int &ier);
 
+template <typename T>
+int xstnd(T* const x, int xSize, T msgValue, int iopt);
+template <typename T>
+void xstnd(T* const x, int xSize, T msgValue, int iopt, int &ier);
+
 }
 
 

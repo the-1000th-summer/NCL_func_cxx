@@ -12,17 +12,17 @@
 namespace NCL_cxx {
 
 template <typename T>
-std::vector<T> dacumrun(const T* const x, int xSize, T msgValue, int nRun, int iopt) {
+std::vector<T> acumrun(const T* const x, int xSize, T msgValue, int nRun, int iopt) {
     std::vector<T> xAcc(xSize);
-    dacumrun(x, xSize, msgValue, nRun, iopt, xAcc.data());
+    acumrun(x, xSize, msgValue, nRun, iopt, xAcc.data());
     return xAcc;
 }
-template std::vector<int> dacumrun(const int* const x, int xSize, int msgValue, int nRun, int iopt);
-template std::vector<float> dacumrun(const float* const x, int xSize, float msgValue, int nRun, int iopt);
-template std::vector<double> dacumrun(const double* const x, int xSize, double msgValue, int nRun, int iopt);
+template std::vector<int> acumrun(const int* const x, int xSize, int msgValue, int nRun, int iopt);
+template std::vector<float> acumrun(const float* const x, int xSize, float msgValue, int nRun, int iopt);
+template std::vector<double> acumrun(const double* const x, int xSize, double msgValue, int nRun, int iopt);
 
 template <typename T>
-void dacumrun(const T* const x, int xSize, T msgValue, int nRun, int iopt, T* const xAcc) {
+void acumrun(const T* const x, int xSize, T msgValue, int nRun, int iopt, T* const xAcc) {
     std::fill_n(xAcc, nRun-1, msgValue);      // 1st (nrun-1) are msg
     
     for (int i = nRun-1; i < xSize; ++i) {

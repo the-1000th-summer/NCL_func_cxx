@@ -7,6 +7,7 @@
 
 #include "rmStndx_dp.h"
 #include "statx.h"
+#include <cmath>
 
 namespace NCL_cxx {
 
@@ -47,6 +48,32 @@ void rmvmed(T* const x, int xSize, T msgValue, int &ier) {
     if (ier != 0) { return; }
     for (int i = 0; i < xSize; ++i) {
         if (x[i] != msgValue) { x[i] -= xMedian; }
+    }
+}
+
+template <typename T>
+int xstnd(T* const x, int xSize, T msgValue, int iopt) {
+    int ier;
+    xstnd(x, xSize, msgValue, iopt, ier);
+    return ier;
+}
+template int xstnd<float>(float* const x, int xSize, float msgValue, int iopt);
+template int xstnd<double>(double* const x, int xSize, double msgValue, int iopt);
+
+template <typename T>
+void xstnd(T* const x, int xSize, T msgValue, int iopt, int &ier) {
+    auto [xMean, xVar, xStd, nPtUsed, ier_2] = stat2(x, xSize, msgValue);
+    ier = ier_2;
+    
+    if (iopt == 1 && nPtUsed > 1) {
+        xStd = std::sqrt((nPtUsed-1.0) * xVar / nPtUsed);
+    }
+    
+    if (ier != 0 || xStd <= 0) { return; }
+    for (int i = 0; i < xSize; ++i) {
+        if (x[i] != msgValue) {
+            x[i] = (x[i] - xMean) / xStd;
+        }
     }
 }
 
