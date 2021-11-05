@@ -12,8 +12,10 @@
 		794EB1B527341F03007E112C /* Test_accumrun.mm in Sources */ = {isa = PBXBuildFile; fileRef = 794EB1AD27341EF8007E112C /* Test_accumrun.mm */; };
 		7973AF1D27315E860016CEBE /* statx.h in Headers */ = {isa = PBXBuildFile; fileRef = 7973AF1C27315E860016CEBE /* statx.h */; };
 		7973AF1F27315E8F0016CEBE /* statx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7973AF1E27315E8F0016CEBE /* statx.cpp */; };
-		7973AF2927315F820016CEBE /* Test_statx.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7973AF2827315F820016CEBE /* Test_statx.mm */; };
+		7973AF2927315F820016CEBE /* Test_statW.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7973AF2827315F820016CEBE /* Test_statW.mm */; };
 		7973AF2A27315F820016CEBE /* libNCL_func_cxx.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7973AF0B27315CFC0016CEBE /* libNCL_func_cxx.dylib */; };
+		799768C42734D68200544631 /* rmsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 799768C32734D68200544631 /* rmsd.cpp */; };
+		799768C72734DE5300544631 /* rmStndx_dp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 799768C62734DE5300544631 /* rmStndx_dp.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +44,11 @@
 		7973AF1C27315E860016CEBE /* statx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = statx.h; sourceTree = "<group>"; };
 		7973AF1E27315E8F0016CEBE /* statx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statx.cpp; sourceTree = "<group>"; };
 		7973AF2627315F820016CEBE /* TestStatx.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestStatx.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7973AF2827315F820016CEBE /* Test_statx.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Test_statx.mm; sourceTree = "<group>"; };
+		7973AF2827315F820016CEBE /* Test_statW.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Test_statW.mm; sourceTree = "<group>"; };
+		799768C22734D60B00544631 /* rmsd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rmsd.h; sourceTree = "<group>"; };
+		799768C32734D68200544631 /* rmsd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = rmsd.cpp; sourceTree = "<group>"; };
+		799768C52734DDFF00544631 /* rmStndx_dp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rmStndx_dp.h; sourceTree = "<group>"; };
+		799768C62734DE5300544631 /* rmStndx_dp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = rmStndx_dp.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,8 @@
 			children = (
 				794EB1A427341701007E112C /* accumrun.h */,
 				7973AF1C27315E860016CEBE /* statx.h */,
+				799768C22734D60B00544631 /* rmsd.h */,
+				799768C52734DDFF00544631 /* rmStndx_dp.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -106,6 +114,8 @@
 			children = (
 				794EB1A527341715007E112C /* accumrun.cpp */,
 				7973AF1E27315E8F0016CEBE /* statx.cpp */,
+				799768C32734D68200544631 /* rmsd.cpp */,
+				799768C62734DE5300544631 /* rmStndx_dp.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -114,7 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				794EB1AD27341EF8007E112C /* Test_accumrun.mm */,
-				7973AF2827315F820016CEBE /* Test_statx.mm */,
+				7973AF2827315F820016CEBE /* Test_statW.mm */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -257,6 +267,8 @@
 			files = (
 				7973AF1F27315E8F0016CEBE /* statx.cpp in Sources */,
 				794EB1A627341715007E112C /* accumrun.cpp in Sources */,
+				799768C72734DE5300544631 /* rmStndx_dp.cpp in Sources */,
+				799768C42734D68200544631 /* rmsd.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7973AF2927315F820016CEBE /* Test_statx.mm in Sources */,
+				7973AF2927315F820016CEBE /* Test_statW.mm in Sources */,
 				794EB1B527341F03007E112C /* Test_accumrun.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

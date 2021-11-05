@@ -93,6 +93,49 @@ begin
 
 end
 
+procedure test_dacumrun()
+begin
+
+    x        = (/1,2,3,4,5,7,-23/)
+    x@_FillValue = -999     
+    x_ars    = dim_acumrun_n(x,3,0,0)
+    print(x_ars)
+    x_ars    = dim_acumrun_n(x,3,1,0)
+    print(x_ars)
+
+end
+
+procedure test_rmsd()
+begin
+    x = (/ 1.,2.,3.,4.,5.,6.,-999,8.,9.,10.,11.,-999 /)
+    y = (/ -999,11.,10.,9.,8.,-999,6.,5.,4.,3.,2.,1. /)
+    x@_FillValue = -999
+    y@_FillValue = -999
+
+    r = dim_rmsd(x, y)
+    print(sprintf("%.8f",r))
+end
+
+procedure test_rmvmean()
+begin
+    x = (/ 1.,2.,3.,4.,5.,6.,-999,8.,9.,10.,11.,-999 /)
+    x@_FillValue = -999
+
+    r = dim_rmvmean(x)
+    print(r)
+end
+
+procedure test_rmvmed()
+begin
+    x = (/ 1.,2.,3.,4.,5.,6.,-999,8.,9.,10.,11.,-999 /)
+    x@_FillValue = -999
+    
+    r = dim_rmvmed(x)
+    print(r)
+end
+
+
+
 begin
 
     ; test_stat2()
@@ -100,7 +143,11 @@ begin
     ; test_stat_medrng()
     ; test_stat_trim()
     ; test_esacr_esacv()
-    test_esccr()
+    ; test_esccr()
+    ; test_dacumrun()
+    ; test_rmsd()
+    ; test_rmvmean()
+    test_rmvmed()
 
 end
 
