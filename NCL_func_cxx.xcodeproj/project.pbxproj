@@ -16,9 +16,15 @@
 		7973AF2A27315F820016CEBE /* libNCL_func_cxx.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7973AF0B27315CFC0016CEBE /* libNCL_func_cxx.dylib */; };
 		799768C42734D68200544631 /* rmsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 799768C32734D68200544631 /* rmsd.cpp */; };
 		799768C72734DE5300544631 /* rmStndx_dp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 799768C62734DE5300544631 /* rmStndx_dp.cpp */; };
+		79E0A8F2276E159000C0C482 /* rcm2rgrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79E0A8F1276E159000C0C482 /* rcm2rgrid.cpp */; };
+		79E0A8F5276E202100C0C482 /* dmapgci.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79E0A8F4276E202100C0C482 /* dmapgci.cpp */; };
+		79E0A8F8276E2D1500C0C482 /* linint2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79E0A8F7276E2D1500C0C482 /* linint2.cpp */; };
 		79F5EABD27363539009DCD6D /* regcoef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79F5EABC27363539009DCD6D /* regcoef.cpp */; };
 		79F5EAC627363B38009DCD6D /* libNCL_func_cxx.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7973AF0B27315CFC0016CEBE /* libNCL_func_cxx.dylib */; };
 		79F5EACC27363B3D009DCD6D /* Test_regcoef.mm in Sources */ = {isa = PBXBuildFile; fileRef = 79F5EAC427363B38009DCD6D /* Test_regcoef.mm */; };
+		79F5EACF2736648E009DCD6D /* zregr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79F5EACE2736648E009DCD6D /* zregr.cpp */; };
+		79F5EAD227367DFF009DCD6D /* ttest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79F5EAD127367DFF009DCD6D /* ttest.cpp */; };
+		79F5EAE827368755009DCD6D /* runave_dp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79F5EAE727368755009DCD6D /* runave_dp.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,10 +65,22 @@
 		799768C32734D68200544631 /* rmsd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = rmsd.cpp; sourceTree = "<group>"; };
 		799768C52734DDFF00544631 /* rmStndx_dp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rmStndx_dp.h; sourceTree = "<group>"; };
 		799768C62734DE5300544631 /* rmStndx_dp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = rmStndx_dp.cpp; sourceTree = "<group>"; };
+		79E0A8F0276E156900C0C482 /* rcm2rgrid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rcm2rgrid.h; sourceTree = "<group>"; };
+		79E0A8F1276E159000C0C482 /* rcm2rgrid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = rcm2rgrid.cpp; sourceTree = "<group>"; };
+		79E0A8F3276E200C00C0C482 /* dmapgci.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dmapgci.h; sourceTree = "<group>"; };
+		79E0A8F4276E202100C0C482 /* dmapgci.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dmapgci.cpp; sourceTree = "<group>"; };
+		79E0A8F6276E2CFC00C0C482 /* linint2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = linint2.h; sourceTree = "<group>"; };
+		79E0A8F7276E2D1500C0C482 /* linint2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = linint2.cpp; sourceTree = "<group>"; };
 		79F5EABB2736347E009DCD6D /* regcoef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = regcoef.h; sourceTree = "<group>"; };
 		79F5EABC27363539009DCD6D /* regcoef.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = regcoef.cpp; sourceTree = "<group>"; };
 		79F5EAC227363B38009DCD6D /* Test_regcoef.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test_regcoef.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79F5EAC427363B38009DCD6D /* Test_regcoef.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Test_regcoef.mm; sourceTree = "<group>"; };
+		79F5EACD2736647D009DCD6D /* zregr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zregr.h; sourceTree = "<group>"; };
+		79F5EACE2736648E009DCD6D /* zregr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = zregr.cpp; sourceTree = "<group>"; };
+		79F5EAD027367DF4009DCD6D /* ttest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ttest.h; sourceTree = "<group>"; };
+		79F5EAD127367DFF009DCD6D /* ttest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ttest.cpp; sourceTree = "<group>"; };
+		79F5EAE627368742009DCD6D /* runave_dp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = runave_dp.h; sourceTree = "<group>"; };
+		79F5EAE727368755009DCD6D /* runave_dp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = runave_dp.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +147,12 @@
 				799768C22734D60B00544631 /* rmsd.h */,
 				799768C52734DDFF00544631 /* rmStndx_dp.h */,
 				79F5EABB2736347E009DCD6D /* regcoef.h */,
+				79F5EACD2736647D009DCD6D /* zregr.h */,
+				79F5EAD027367DF4009DCD6D /* ttest.h */,
+				79F5EAE627368742009DCD6D /* runave_dp.h */,
+				79E0A8F0276E156900C0C482 /* rcm2rgrid.h */,
+				79E0A8F3276E200C00C0C482 /* dmapgci.h */,
+				79E0A8F6276E2CFC00C0C482 /* linint2.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -141,6 +165,12 @@
 				799768C32734D68200544631 /* rmsd.cpp */,
 				799768C62734DE5300544631 /* rmStndx_dp.cpp */,
 				79F5EABC27363539009DCD6D /* regcoef.cpp */,
+				79F5EACE2736648E009DCD6D /* zregr.cpp */,
+				79F5EAD127367DFF009DCD6D /* ttest.cpp */,
+				79F5EAE727368755009DCD6D /* runave_dp.cpp */,
+				79E0A8F1276E159000C0C482 /* rcm2rgrid.cpp */,
+				79E0A8F4276E202100C0C482 /* dmapgci.cpp */,
+				79E0A8F7276E2D1500C0C482 /* linint2.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -320,10 +350,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79F5EAD227367DFF009DCD6D /* ttest.cpp in Sources */,
 				7973AF1F27315E8F0016CEBE /* statx.cpp in Sources */,
+				79F5EAE827368755009DCD6D /* runave_dp.cpp in Sources */,
+				79E0A8F5276E202100C0C482 /* dmapgci.cpp in Sources */,
 				794EB1A627341715007E112C /* accumrun.cpp in Sources */,
 				79F5EABD27363539009DCD6D /* regcoef.cpp in Sources */,
 				799768C72734DE5300544631 /* rmStndx_dp.cpp in Sources */,
+				79F5EACF2736648E009DCD6D /* zregr.cpp in Sources */,
+				79E0A8F2276E159000C0C482 /* rcm2rgrid.cpp in Sources */,
+				79E0A8F8276E2D1500C0C482 /* linint2.cpp in Sources */,
 				799768C42734D68200544631 /* rmsd.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

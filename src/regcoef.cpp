@@ -33,7 +33,7 @@ void regcoef(const T* const x, const T* const y, int arrSize, T xMsgValue, T yMs
     nPtUsed = 0;
     
     for (int i = 0; i < arrSize; ++i) {
-        if (x[i] != xMsgValue && y[i] != xMsgValue) {
+        if (x[i] != xMsgValue && y[i] != yMsgValue) {
             xSum += x[i]; ySum += y[i];
             x2Sum += pow(x[i], 2);
             y2Sum += pow(y[i], 2);
