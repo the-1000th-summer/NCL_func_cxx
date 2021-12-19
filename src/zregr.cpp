@@ -37,7 +37,7 @@ void zregr2(int n, int m, int m2, const float* const t, float tMsgValue, const f
     }
     
     // Construct matrix A:
-    std::fill_n(A, A+m*m, 0.0);
+    std::fill_n(A, m*m, 0.0);
     for (int i = 0; i < n; ++i) {
         float t_i = t[i];
         if (t_i != tMsgValue) {
