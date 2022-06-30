@@ -23,7 +23,7 @@ double fbli(double z1, double z2, double z3, double z4, double slpx, double slpy
 
 }
 
-void rgrid2rcm(const double* const xi, const double* const yi, int xiSize, int yiSize, const double* const xo, const double* const yo, int xoSize, int yoSize, const double* const fi, float* const fo, double msgValue, int &ier) {
+void rgrid2rcm(const double* const xi, const double* const yi, int xiSize, int yiSize, const double* const xo, const double* const yo, int xoSize, int yoSize, const double* const fi, double* const fo, double msgValue, int &ier) {
     
     ier = 0;
     if (xiSize <= 1 || yiSize <= 1 || xoSize <= 1 || yoSize <= 1) {
