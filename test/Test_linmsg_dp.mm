@@ -36,10 +36,13 @@
 
 - (void)test_linmsg2 {
     double ymsg = 1.e10;
-    double x[] = {1115.,ymsg ,1515.,1794.,ymsg ,1710.,1830.,1920.,1970.,2300.,2280.,2520.,2630.,ymsg ,ymsg ,2800.,ymsg ,ymsg};
-    NCL_cxx::linmsg(x, 18, ymsg, -1, 18);
+    double x[] = {1115.,ymsg ,1515.,1794.,ymsg ,1710.,1830.,ymsg,ymsg,ymsg,2280.,2520.,2630.,ymsg ,ymsg ,2800.,ymsg ,ymsg};
+    NCL_cxx::linmsg(x, 18, ymsg, -1, 2);
     XCTAssertEqual(x[1], 1315);
     XCTAssertEqual(x[4], 1752);
+    XCTAssertEqual(x[7], ymsg);
+    XCTAssertEqual(x[8], ymsg);
+    XCTAssertEqual(x[9], ymsg);
     XCTAssertEqualWithAccuracy(x[13], 2686.67, 1e-2);
     XCTAssertEqualWithAccuracy(x[14], 2743.33, 1e-2);
     XCTAssertEqual(x[16], 2800);

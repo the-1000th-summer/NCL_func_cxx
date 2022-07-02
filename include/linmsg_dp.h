@@ -10,7 +10,8 @@
 
 namespace NCL_cxx {
 
-void linmsg(double* const x, int npts, double msgValue, int mflag, int mptcrt);
+template <typename T>
+void linmsg(T* const x, int npts, T msgValue, int mflag, int mptcrt);
 
 }
 

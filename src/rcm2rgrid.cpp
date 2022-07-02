@@ -9,6 +9,7 @@
 #include "rcm2rgrid.h"
 #include "dmapgci.h"
 #include "linint2.h"
+#include "linmsg_dp.h"
 
 namespace NCL_cxx {
 
@@ -22,6 +23,127 @@ double fbli(double z1, double z2, double z3, double z4, double slpx, double slpy
 }
 
 }
+
+template <typename T>
+void rcm2rgrid(const T* const xi, const T* const yi, int xiSize, int yiSize, const T* const xo, const T* const yo, int xoSize, int yoSize, const T* const fi, T* const fo, T msgValue, int &ier) {
+    
+    // error checking
+    ier = 0;
+    if (xiSize <= 1 || yiSize <= 1 || xoSize <= 1 || yoSize <= 1) {
+        ier = 1;
+        return;
+    }
+    if (!monoInc(yo, yoSize)) {
+        ier = 1; return;
+    }
+    if (!monoInc(xo, xoSize)) {
+        ier = 1; return;
+    }
+    
+    auto chkLat = std::make_unique<T []>(yiSize);
+    for (int ny = 0; ny < yiSize; ++ny)
+        chkLat[ny] = yi[ny * xiSize];
+    if (!monoInc(chkLat.get(), yiSize)) {
+        ier = 1; return;
+    }
+    
+//    auto chkLon = std::make_unique<double []>(xiSize);
+//    for (int nx = 0; nx < xiSize; ++nx)
+//        chkLon[nx] = xi[nx];
+    if (!monoInc(xi, xiSize)) {
+        ier = 1; return;
+    }
+    
+    int k = 2;
+    int ncrt = 1;
+    
+    // initialize to xmsg
+    std::fill_n(fo, yoSize*xoSize, msgValue);
+    
+    // main loop [exact matches]
+    // people want bit-for-bit match
+    double eps = 1.0e-04;
+    
+    for (int ny = 0; ny < yoSize; ++ny) {
+        for (int nx = 0; nx < xoSize; ++nx) {
+            [&] {
+                for (int iy = 0; iy < yiSize; ++iy) {
+                    for (int ix = 0; ix < xiSize; ++ix) {
+                        if (xo[nx] >= (xi[iy*xiSize+ix] - eps) &&
+                            xo[nx] <= (xi[iy*xiSize+ix] + eps) &&
+                            yo[ny] >= (yi[iy*xiSize+ix] - eps) &&
+                            yo[ny] <= (yi[iy*xiSize+ix] + eps)) {
+                            fo[ny*xoSize+nx] = fi[iy*xiSize+ix];
+                            return;
+                        }
+                    }
+                }
+            }();
+        }
+    }
+    
+    // main loop [interpolation]
+    for (int ny = 0; ny < yoSize; ++ny) {
+        for (int nx = 0; nx < xoSize; ++nx) {
+            for (int iy = 0; iy < (yiSize - k); ++iy) {
+                for (int ix = 0; ix < (xiSize - k); ++ix) {
+                    if (xo[nx] >= xi[iy*xiSize+ix] &&
+                        xo[nx] <= xi[iy*xiSize+ix+k] &&
+                        yo[ny] >= yi[iy*xiSize+ix] &&
+                        yo[ny] <= yi[(iy+k)*xiSize+ix]) {
+                        
+                        double w[4] = {
+                            pow(1.0 / dgcdist(yo[ny],xo[nx],yi[iy*xiSize+ix],xi[iy*xiSize+ix],2), 2),
+                            pow(1.0 / dgcdist(yo[ny],xo[nx],yi[iy*xiSize+ix+k],xi[iy*xiSize+ix+k],2), 2),
+                            pow(1.0 / dgcdist(yo[ny],xo[nx],yi[(iy+k)*xiSize+ix],xi[(iy+k)*xiSize+ix],2), 2),
+                            pow(1.0 / dgcdist(yo[ny],xo[nx],yi[(iy+k)*xiSize+ix+k],xi[(iy+k)*xiSize+ix+k],2), 2),
+                        };
+                        
+                        if (fo[ny*xoSize+nx] == msgValue) {
+                            double fw[4] = {
+                                fi[iy*xiSize+ix],
+                                fi[iy*xiSize+ix+k],
+                                fi[(iy+k)*xiSize+ix],
+                                fi[(iy+k)*xiSize+ix+k]
+                            };
+                            
+                            int nw = 0;
+                            double sumF = 0.0, sumW = 0.0;
+                            for (int i = 0; i < 4; ++i) {
+                                if (fw[i] != msgValue) {
+                                    sumF += fw[i] * w[i];
+                                    sumW += w[i];
+                                    nw += 1;
+                                }
+                            }
+                            
+                            if (nw >= ncrt && sumW >= 0.0) {
+                                fo[ny*xoSize+nx] = sumF / sumW;
+                            }
+                        }
+                        goto interp_notExact_outer;
+                    }
+                }
+            }
+            interp_notExact_outer:
+            ;
+        }
+    }
+    
+    // Since the RCM grid is curvilinear the above algorithm may not work
+    // for all of the locations on regular grid. Fill via linear interp.
+    
+    int mflag = 0, mptcrt = 2;
+    for (int ny = 0; ny < yoSize; ++ny) {
+        for (int nx = 0; nx < xoSize; ++nx) {
+            if (fo[ny*xoSize+nx] == msgValue) {
+                linmsg(fo+ny*xoSize, xoSize, msgValue, mflag, mptcrt);
+            }
+        }
+    }
+}
+template void rcm2rgrid(const float* const xi, const float* const yi, int xiSize, int yiSize, const float* const xo, const float* const yo, int xoSize, int yoSize, const float* const fi, float* const fo, float msgValue, int &ier);
+template void rcm2rgrid(const double* const xi, const double* const yi, int xiSize, int yiSize, const double* const xo, const double* const yo, int xoSize, int yoSize, const double* const fi, double* const fo, double msgValue, int &ier);
 
 void rgrid2rcm(const double* const xi, const double* const yi, int xiSize, int yiSize, const double* const xo, const double* const yo, int xoSize, int yoSize, const double* const fi, double* const fo, double msgValue, int &ier) {
     
@@ -47,11 +169,13 @@ void rgrid2rcm(const double* const xi, const double* const yi, int xiSize, int y
     int nExact = 0;
     for (int ny = 0; ny < yoSize; ++ny) {
         for (int nx = 0; nx < xoSize; ++nx) {
-            [&] {                              // break out of nested loop using lambda
+            [&] {               // break out of nested loop using lambda
                 for (int iy = 0; iy < yiSize; ++iy) {
                     for (int ix = 0; ix < xiSize; ++ix) {
-                        if (xo[ny*xoSize+nx] >= (xi[ix]-eps) && xo[ny*xoSize+nx] <= (xi[ix]+eps) &&
-                            yo[ny*xoSize+nx] >= (yi[iy]-eps) && yo[ny*xoSize+nx] <= (yi[iy]+eps)) {
+                        if (xo[ny*xoSize+nx] >= (xi[ix]-eps) &&
+                            xo[ny*xoSize+nx] <= (xi[ix]+eps) &&
+                            yo[ny*xoSize+nx] >= (yi[iy]-eps) &&
+                            yo[ny*xoSize+nx] <= (yi[iy]+eps)) {
                             fo[ny*xoSize+nx] = fi[iy*xiSize+ix];
                             ++nExact;
                             return;
@@ -67,8 +191,10 @@ void rgrid2rcm(const double* const xi, const double* const yi, int xiSize, int y
         for (int nx = 0; nx < xoSize; ++nx) {
             for (int iy = 0; iy < yiSize - k; ++iy) {
                 for (int ix = 0; ix < xiSize - k; ++ix) {
-                    if (xo[ny*xoSize+nx] >= xi[ix] && xo[ny*xoSize+nx] < xi[ix+k] &&
-                        yo[ny*xoSize+nx] >= yi[iy] && yo[ny*xoSize+nx] < yi[iy+k]) {
+                    if (xo[ny*xoSize+nx] >= xi[ix] &&
+                        xo[ny*xoSize+nx] < xi[ix+k] &&
+                        yo[ny*xoSize+nx] >= yi[iy] &&
+                        yo[ny*xoSize+nx] < yi[iy+k]) {
                         if (fo[ny*xoSize+nx] == msgValue) {   // 不是[exact matches]
                             auto fi_here = fi[iy*xiSize+ix];
                             auto fi_xP1 = fi[iy*xiSize+ix+k], fi_yP1 = fi[(iy+k)*xiSize+ix];

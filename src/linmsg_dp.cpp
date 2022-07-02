@@ -11,7 +11,8 @@
 
 namespace NCL_cxx {
 
-void linmsg(double* const x, int npts, double msgValue, int mflag, int mptcrt) {
+template <typename T>
+void linmsg(T* const x, int npts, T msgValue, int mflag, int mptcrt) {
     if (!std::any_of(x, x+npts, [msgValue](double x_ele) {return x_ele != msgValue;})) { return; }
     
     /// 连续missing values的起始index和末尾index
@@ -55,6 +56,9 @@ void linmsg(double* const x, int npts, double msgValue, int mflag, int mptcrt) {
     }
     
 }
+
+template void linmsg(double* const x, int npts, double msgValue, int mflag, int mptcrt);
+template void linmsg(float* const x, int npts, float msgValue, int mflag, int mptcrt);
 
 }
 
