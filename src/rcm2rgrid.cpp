@@ -6,6 +6,7 @@
 //
 #include <cmath>
 #include <algorithm>
+#include <memory>
 #include "rcm2rgrid.h"
 #include "dmapgci.h"
 #include "linint2.h"
