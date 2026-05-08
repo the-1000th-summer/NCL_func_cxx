@@ -2,7 +2,7 @@
 //  rmStndx_dp.cpp
 //  NCL_func_cxx
 //
-//  Created by 邓浩 on 2021/11/5.
+//  Created on 2021/11/5.
 //
 
 #include "rmStndx_dp.h"

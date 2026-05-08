@@ -2,7 +2,7 @@
 //  dmapgci.h
 //  NCL_func_cxx
 //
-//  Created by 邓浩 on 2021/12/18.
+//  Created on 2021/12/18.
 //
 
 #ifndef dmapgci_h

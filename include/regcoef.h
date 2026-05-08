@@ -2,7 +2,7 @@
 //  regcoef.h
 //  NCL_func_cxx
 //
-//  Created by 邓浩 on 2021/11/6.
+//  Created on 2021/11/6.
 //
 
 #ifndef regcoef_h

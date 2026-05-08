@@ -2,7 +2,7 @@
 //  wrf_user.cpp
 //  NCL_func_cxx
 //
-//  Created by 邓浩 on 2021/12/25.
+//  Created on 2021/12/25.
 //
 
 #include "wrf_user.h"

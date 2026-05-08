@@ -2,7 +2,7 @@
 //  linmsg_dp.cpp
 //  NCL_func_cxx
 //
-//  Created by 邓浩 on 2022/6/30.
+//  Created on 2022/6/30.
 //
 
 #include <algorithm>

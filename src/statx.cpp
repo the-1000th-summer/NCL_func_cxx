@@ -2,7 +2,7 @@
 //  statx.cpp
 //  NCL_func_cxx
 //
-//  Created by 邓浩 on 2021/11/1.
+//  Created on 2021/11/1.
 //
 
 #include <iostream>
